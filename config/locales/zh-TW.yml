@@ -7,6 +7,9 @@
     timeout_expired: 'SSO Token 已過期，請重新發起登錄請求。'
     unknown_error: '抱歉 SSO 登錄的過程遇到了未處理的異常，登陸失敗。'
     not_found: '抱歉 SSO 登錄的過程遇到了未處理的異常，登陸失敗。'
+  errors:
+    message:
+      extension_whitelist_error: "僅允許圖片文件上傳 [jpg, jpeg, gif, png]"
   activerecord:
     models:
       user: "用戶"
@@ -27,8 +30,7 @@
         website: "個人主頁"
         last_logined_at: "上次登錄時間"
         tagline: "簽名"
-        state: "狀態"
-        verified: "信任用戶"
+        state: "等級"
         company: "公司"
         github: "GitHub"
         remember_me: 記住登陸狀態
@@ -113,6 +115,5 @@
         unsaved_document:
           You cannot call create or create! through a relational association
           relation (%{document}) who's parent (%{base}) is not already saved.
-
 
 

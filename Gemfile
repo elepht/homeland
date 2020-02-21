@@ -4,10 +4,9 @@ source "https://rubygems.org"
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
-gem "coffee-rails"
 gem "jbuilder"
 gem "jquery-rails"
-gem "rails", "~> 5.2.0"
+gem "rails"
 gem "rails_autolink"
 gem "sass-rails"
 gem "sprockets"
@@ -23,7 +22,7 @@ gem "dotenv-rails"
 
 gem "rack-attack"
 
-gem "bootstrap", "~> 4.1.0"
+gem "bootstrap", "~> 4"
 gem "font-awesome-rails"
 gem "http_accept_language"
 gem "jquery-atwho-rails"
@@ -38,7 +37,7 @@ gem "doorkeeper-i18n"
 gem "bulk_insert"
 
 # 上传组件
-gem "carrierwave"
+gem "carrierwave", "~> 1.3.1"
 # Aliyun / Upyun / Qiniu 可选项
 gem "carrierwave-aliyun"
 gem "carrierwave-upyun"
@@ -47,9 +46,9 @@ gem "carrierwave-qiniu"
 # Lazy load
 gem "mini_magick", require: false
 
-# 验证码，头像
-gem "letter_avatar"
+# 验证码
 gem "rucaptcha"
+gem "recaptcha"
 
 # 用户系统
 gem "devise"
@@ -62,6 +61,9 @@ gem "ruby-push-notifications"
 # 赞、关注、收藏、屏蔽等功能的数据结构
 gem "action-store"
 
+# Rails Enum 扩展
+gem "enumize"
+
 # 分页
 gem "kaminari"
 
@@ -72,7 +74,7 @@ gem "form-select"
 gem "elasticsearch-model", "~> 5.0.2"
 gem "elasticsearch-rails", "~> 5.0.2"
 
-# 三方平台 OAuth 验证登陆
+# 三方平台 OAuth 验证登录
 gem "omniauth"
 gem "omniauth-github"
 
@@ -80,7 +82,6 @@ gem "omniauth-github"
 gem "cancancan"
 
 # Redis
-gem "hiredis"
 gem "redis"
 gem "redis-namespace"
 gem "redis-objects"
@@ -92,14 +93,15 @@ gem "second_level_cache"
 gem "rails-settings-cached"
 
 # HTML Pipeline
-gem "auto-space"
+gem "auto-correct"
 gem "html-pipeline"
-gem "html-pipeline-rouge_filter"
+gem "html-pipeline-auto-correct"
 gem "redcarpet"
+gem "rouge"
 
 # 队列
 gem "sidekiq"
-gem "sidekiq-scheduler"
+gem "sidekiq-cron"
 
 # 分享功能
 gem "social-share-button"
@@ -112,37 +114,28 @@ gem "puma"
 
 # API cors
 gem "rack-cors", require: "rack/cors"
-gem "rack-utf8_sanitizer"
 
 gem "exception-track"
-gem "status-page"
-
-# Homeland Plugins
-gem "homeland-jobs", "~> 0.3.0"
-gem "homeland-note", "~> 0.2.0"
-gem "homeland-press",  "~> 0.4.0"
-gem "homeland-site",  "~> 0.2.0"
-gem "homeland-wiki", "~> 0.4.0"
 
 gem "bootsnap"
 
+# Lock version
+gem "sassc", "2.0.1"
+
 group :development do
-  gem "derailed"
   gem "spring"
-  gem "spring-commands-rspec"
+  gem "byebug"
 end
 
 group :development, :test do
   gem "sdoc"
-  gem "bundler-audit", require: false
-  gem "capybara"
-  gem "database_cleaner"
-  gem "factory_bot_rails"
   gem "letter_opener"
   gem "listen"
-  gem "rspec-rails"
-  gem "rubocop", ">= 0.49.0", require: false
-  gem "yard", ">= 0.9.11"
 
+  gem "mocha"
+  gem "minitest-spec-rails"
+  gem "factory_bot_rails"
+
+  gem "rubocop", require: false
   gem "codecov", require: false
 end

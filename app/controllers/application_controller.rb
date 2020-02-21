@@ -4,6 +4,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true
   helper_method :turbolinks_app?, :turbolinks_ios?, :turbolinks_app_version
+
+  include SetCurrentInfo
   include Homeland::UserNotificationHelper
 
   # Addition contents for etag
@@ -20,7 +22,8 @@ class ApplicationController < ActionController::Base
     params[resource] &&= send(method) if respond_to?(method, true)
 
     if devise_controller?
-      devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(*User::ACCESSABLE_ATTRS) }
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[login email email_public name password password_confirmation _rucaptcha])
+      devise_parameter_sanitizer.permit(:sign_in, keys: %i[login password remember_me])
       devise_parameter_sanitizer.permit(:account_update) do |u|
         if current_user.email_locked?
           u.permit(*User::ACCESSABLE_ATTRS)
@@ -28,10 +31,8 @@ class ApplicationController < ActionController::Base
           u.permit(:email, *User::ACCESSABLE_ATTRS)
         end
       end
-      devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(*User::ACCESSABLE_ATTRS) }
     end
 
-    User.current = current_user
     cookies.signed[:user_id] ||= current_user.try(:id)
 
     # hit unread_notify_count
@@ -72,7 +73,7 @@ class ApplicationController < ActionController::Base
 
     respond_to do |format|
       format.html { render template: "/errors/#{fname}", handler: [:erb], status: status, layout: "application" }
-      format.all  { render nothing: true, status: status }
+      format.all { render body: nil, status: status }
     end
   end
 

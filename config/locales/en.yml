@@ -1,24 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   contents: Contents
   omniauth:
@@ -28,6 +7,9 @@ en:
     timeout_expired: 'SSO Token was expired.'
     unknown_error: 'Sorry, this have an unknown error with SSO login.'
     not_found: 'Sorry, this have an unknown error with SSO login.'
+  errors:
+    messages:
+      extension_whitelist_error: "Invalid file format, only image allowed [jpg, jpeg, gif, png]"
   activerecord:
     models:
       user: "User"
@@ -49,7 +31,6 @@ en:
         last_logined_at: "Last signed in at"
         tagline: "Tagline"
         state: "Status"
-        verified: "Verified"
         company: "Company"
         github: "GitHub"
         remember_me: "Remember me"
@@ -95,7 +76,7 @@ en:
         blank: "Cannot be blank."
         too_long: "Too long (limited to %{count} characters)."
         too_short: "Too short (at least %{count} characters are required)."
-        wrong_length: "Invvalid length (valid length: %{count} characters)."
+        wrong_length: "Invalid length (valid length: %{count} characters)."
         taken: "already taken"
         not_a_number: "Not a number"
         not_an_integer: "Not an integer"
